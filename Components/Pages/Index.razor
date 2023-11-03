@@ -1,0 +1,45 @@
+﻿@page "/"
+@using Components.Enums;
+@using Components.Infrastructure;
+@using Components.Shared
+@using Makani
+
+@*<MyButton location="ong"/>*@
+<MyButton location="right">
+    Salam
+</MyButton>
+
+
+<MkButton Size="MkSize.Large">Javohir</MkButton>
+
+<MkButton Color="MakaniColor.Gray" Size="MkSize.Medium" Variant="ButtonVariant.Outline">Javohir</MkButton>
+
+<MkButton Color="MakaniColor.Slate" Size="MkSize.Small" Variant="ButtonVariant.Default">Javohir</MkButton>
+
+<MkButton>Javohir</MkButton>
+
+@*Take name value and assigne it to class, multiple names can be assigned*@ 
+@*<MyButton type="link" link="http://www.google.com" target="_blank" name="btn btn-outline" icon="settings" iconLocation="right" iconWidth="w-4.5" iconHeight="w-4.5">
+    Salam
+</MyButton>
+
+<a href="http://www.google.com" target="_blank" class="text-gray btn btn-outline btn-with-icon icon-right">
+    <span>Salam</span>
+    <svg class="w-4.5 h-4.5">
+        <use xlink:href="/img/s-spr.svg#settings">
+        </use>
+    </svg>
+</a>
+
+
+<MyButton type="button" name="btn btn-outline" icon="settings" iconLocation="right" iconWidth="w-4.5" iconHeight="w-4.5">
+    Salam
+</MyButton>
+
+<button class="btn btn-outline btn-with-icon icon-right">
+    <span>Salam</span>
+    <svg class="w-4.5 h-4.5">
+        <use xlink:href="/img/s-spr.svg#settings">
+        </use>
+    </svg>
+</button>*@

@@ -1,0 +1,25 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply px-8 py-4 rounded border bg-black text-white;
+    }
+
+    .bg-slate-100 {
+        @apply background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+    }
+
+    .bg-gray-900 {
+        @apply  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+    }
+
+    .bg-slate-200 {
+        @apply background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+    }
+
+    .bg-gray-200 {
+        @apply background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+    }
+}

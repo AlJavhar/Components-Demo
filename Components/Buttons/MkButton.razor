@@ -1,0 +1,101 @@
+﻿@namespace Makani
+@using Components.Enums;
+@using Components.Infrastructure;
+@using Components.Styling;
+@implements IButtonProps
+
+<button class="@BuildCss() @(Pressed ? "translate-y-[0.075rem]" : "")" @onmousedown="() => Pressed = true" @onmouseup="() => Pressed = false" @onclick="OnClick">@ChildContent</button>
+
+@code {
+    private bool Pressed { get; set; }
+   // private string InternalCss { get; set; }
+
+    [Parameter]
+    public MkSize Size { get; set; } = MkSize.Medium;
+
+    [Parameter]
+    public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
+
+    [Parameter]
+    public ColorWithShade Color { get; set; } = MakaniColor.Neutral;
+
+    [Parameter]
+    public RenderFragment? LeftIcon { get; set; }
+
+    [Parameter]
+    public RenderFragment? RightIcon { get; set; }
+
+    [Parameter]
+    public MkSize Radius { get; set; } = MkSize.Small;
+
+    [Parameter]
+    public bool Uppercase { get; set; }
+
+    [Parameter]
+    public bool Loading { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? Styles { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick {get; set;}
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
+
+    public string BuildCss()
+    {
+        var builder = TailwindBuilder.New();
+
+        switch (Variant)
+        {
+            case ButtonVariant.Filled:
+                builder.AddBackground(Color).AddClasses("text-white"); 
+                break;
+            case ButtonVariant.Outline:
+                builder.AddBorder(Color).SetFontColor(Color);
+                break;
+            case ButtonVariant.Default:
+                builder.AddBorder(MakaniColor.Red).SetFontColor(MakaniColor.Red.Six);
+                break;
+            case ButtonVariant.Subtle:
+                builder.AddBackgroundHover(Color.Two).SetFontColor(Color);
+                break;
+            default:
+                break;
+        }
+
+        builder = AddPadding(builder).SetFontSize(Size);
+
+        if (Uppercase)
+        {
+            builder = builder.AddTextTransform(TextTransform.Lowercase);
+        }
+
+        builder.AddClasses("rounded-sm font-semibold subpixel-antialiased");
+
+        // Добавьте строку ниже для использования свойства BorderColor
+        builder = builder.AddBorder(Color);
+
+        // Добавьте строку ниже для использования свойства FontColor
+        builder = builder.SetFontColor(Color);
+
+        return builder.Build();
+    }
+
+    private TailwindBuilder AddPadding(TailwindBuilder builder)
+    {
+        return Size switch
+        {
+            MkSize.Small => builder.AddPadding(3, 2),
+            MkSize.Medium => builder.AddPadding(3.5, 2.5),
+            MkSize.Large => builder.AddPadding(4, 3),
+            _ => builder.AddPadding(3, 2),
+        };
+    }
+}
